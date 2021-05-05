@@ -4,8 +4,8 @@
 
 {% block content %}
 
-    <h1> Welcome to My Life! </h1>
-    <form id="imageForm" action="/upload" enctype="multipart/form-data" method="POST">
+    <h1 onClick="location.href='/'"> Welcome to My Life! </h1>
+    <form id="imageForm" action="/" enctype="multipart/form-data" method="POST">
         <input type="text" id="title" name="title" placeholder="What are you uploading?" />
         <select id="category" name="category" placeholder="tags">
             <option disabled selected value> Select a category </option>
@@ -36,7 +36,7 @@
         <button id="friends & family" onClick="location.href='/friends & family'"> friends & family </button>
         <button id="others" onClick="location.href='/others'"> others </button>
     </div>
-    
+
     <div class="cards">
     {% for image in allImages %}
         <div class="card">

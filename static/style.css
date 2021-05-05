@@ -1,7 +1,9 @@
 h1 {
     text-align: center;
     /* border: 1px solid red; */
+    cursor: pointer;
 }
+
 form {
     /* border: 1px solid black; */
     width: 50%;

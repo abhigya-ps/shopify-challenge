@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, Response
+from flask import Flask, request, render_template, Response, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy     
 from werkzeug.utils import secure_filename
 import os
@@ -15,27 +15,29 @@ class SavedImages(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text, nullable=False)
     category = db.Column(db.Text, nullable=False)
-    img = db.Column(db.Text, nullable=False)
     filename = db.Column(db.Text, unique=True, nullable=False)
-    mimetype = db.Column(db.Text, nullable=False)
 
-@app.route('/')
-def home():
-    print('home')
+def getImages():
     if not SavedImages.query.all():
-        print(12)
-        return render_template('index.html')
+        print('No images here.')
+        return []
         
     allImages = SavedImages.query.all()
     print(allImages[0].filename)
     for image in allImages:
         image.filename = 'uploads/' + image.filename
-    # imgNames = ['uploads/' + img.name for img in allImages]
+    return allImages
+    
+
+@app.route('/')
+def home():
+    print('home')
+    allImages = getImages()
     return render_template('index.html', allImages=allImages)
 
 # upload image
 app.config['UPLOAD_PATH'] = 'static/uploads'
-@app.route('/upload', methods=['POST'])
+@app.route('/', methods=['POST'])
 def upload():
     print('upload')
     title = request.form['title']
@@ -46,18 +48,17 @@ def upload():
         return 'No picture uploaded', 400
 
     filename = secure_filename(picture.filename)
-    mimetype = picture.mimetype
     
     # save image file to directory
     picture.save(os.path.join(app.config['UPLOAD_PATH'], filename))
 
     # save to database
-    img = SavedImages(title=title, category=category, img=picture.read(), filename=filename, mimetype=mimetype)
+    img = SavedImages(title=title, category=category, filename=filename)
     db.session.add(img)
     db.session.commit()
 
-    return render_template('index.html')
-    return 'Image has been uploaded!', 200
+    allImages = getImages()
+    return render_template('index.html', allImages=allImages)
 
 # delete image
 @app.route('/delete/<int:id>')
@@ -66,7 +67,9 @@ def delete(id):
     os.remove(os.path.join(app.config['UPLOAD_PATH'], filename))
     SavedImages.query.filter_by(id=id).delete()
     db.session.commit()
-    return 'Deleted'
+
+    print('deleted')
+    return redirect(url_for('home'))
 
 # display single image
 @app.route('/<int:id>')
