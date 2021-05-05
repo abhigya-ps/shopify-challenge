@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, Response, redirect, url_for
+from flask import Flask, request, render_template, Response, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy     
 from werkzeug.utils import secure_filename
 import os
@@ -13,18 +13,23 @@ db = SQLAlchemy(app)
 
 class SavedImages(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.Text, nullable=False)
+    title = db.Column(db.Text, unique=True, nullable=False)
     category = db.Column(db.Text, nullable=False)
     filename = db.Column(db.Text, unique=True, nullable=False)
 
-def getImages():
-    if not SavedImages.query.all():
-        print('No images here.')
-        return []
+def getImages(category=None):
+
+    if category is None: 
+        print('80')       # no category mentioned -> show all images
+        print(SavedImages.query.all())
+        if not SavedImages.query.all(): allImages = []
+        else: allImages = SavedImages.query.all()
+
+    else:                       # shows images of given category
+        if not SavedImages.query.filter_by(category=category): allImages = []
+        else: allImages = SavedImages.query.filter_by(category=category)
         
-    allImages = SavedImages.query.all()
-    print(allImages[0].filename)
-    for image in allImages:
+    for image in allImages:     # path for images inside uploads folder
         image.filename = 'uploads/' + image.filename
     return allImages
     
@@ -69,23 +74,19 @@ def delete(id):
     db.session.commit()
 
     print('deleted')
-    return redirect(url_for('home'))
+    prev_url = request.referrer
+    if len(prev_url) > 22:      # check if delete request is coming from a category page
+        tag = prev_url[27:]
+        return redirect(url_for('category', category=tag))
+    else:                       # delete request is coming from home page
+        return redirect(url_for('home'))
 
 # category page
 @app.route('/tags/<category>')
 def category(category):
-    print(18)
     print(category)
-
-    if not SavedImages.query.all():
-        print('No images here.')
-        return []
-        
-    images = SavedImages.query.filter_by(category=category)
-    for image in images:
-        image.filename = 'uploads/' + image.filename
-    
-    return render_template('categories.html', images=images, category=category)
+    allImages = getImages(category)
+    return render_template('categories.html', images=allImages, category=category)
 
 # display single image
 @app.route('/<int:id>')

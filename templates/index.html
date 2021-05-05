@@ -4,56 +4,44 @@
 
 {% block content %}
 
-    <h1 onClick="location.href='/'"><span id="title"> Welcome to My Life! </span></h1>
-    <form id="imageForm" action="/" enctype="multipart/form-data" method="POST">
-        <input type="text" id="title" name="title" placeholder="What are you uploading?" />
-        <select id="category" name="category" placeholder="tags">
-            <option disabled selected value> Select a category </option>
-            <option value="home"> home </option>
-            <option value="work"> work </option>
-            <option value="school"> school </option>
-            <option value="art"> art </option>
-            <option value="music"> music </option>
-            <option value="food"> food </option>
-            <option value="travel"> travel </option>
-            <option value="f&f"> friends & family </option>
-            <option value="others"> others </option>
-        </select>
-        <input type="file" id="picture" name="picture" />
-        <input type="submit" id="submit" value="Upload Picture" />
-    </form>
+<h1 onClick="location.href='/'"><span id="title"> Welcome to My Life! </span></h1>
+<form id="imageForm" action="/" enctype="multipart/form-data" method="POST">
+    <input type="text" id="title" name="title" placeholder="What are you uploading?" />
+    <select id="category" name="category" placeholder="tags">
+        <option disabled selected value> Select a category </option>
+        <option value="home"> home </option>
+        <option value="work"> work </option>
+        <option value="school"> school </option>
+        <option value="art"> art </option>
+        <option value="music"> music </option>
+        <option value="food"> food </option>
+        <option value="travel"> travel </option>
+        <option value="f&f"> friends & family </option>
+        <option value="others"> others </option>
+    </select>
+    <input type="file" id="picture" name="picture" />
+    <input type="submit" id="submit" value="Upload Picture" />
+</form>
 
-    <hr>
+<hr>
 
-    <div class="categories">
-        <button id="home" onClick="location.href='/home'"> home </button>
-        <button id="work" onClick="location.href='/work'"> work </button>
-        <button id="school" onClick="location.href='/school'"> school </button>
-        <button id="art" onClick="location.href='/art'"> art </button>
-        <button id="music" onClick="location.href='/music'"> music </button>
-        <button id="food" onClick="location.href='/food'"> food </button>
-        <button id="travel" onClick="location.href='/travel'"> travel </button>
-        <button id="friends & family" onClick="location.href='/friends & family'"> friends & family </button>
-        <button id="others" onClick="location.href='/others'"> others </button>
-    </div>
+<div class="categories">
+    <button id="home" onClick="location.href='/tags/home'"> home </button>
+    <button id="work" onClick="location.href='/tags/work'"> work </button>
+    <button id="school" onClick="location.href='/tags/school'"> school </button>
+    <button id="art" onClick="location.href='/tags/art'"> art </button>
+    <button id="music" onClick="location.href='/tags/music'"> music </button>
+    <button id="food" onClick="location.href='/tags/food'"> food </button>
+    <button id="travel" onClick="location.href='/tags/travel'"> travel </button>
+    <button id="friends & family" onClick="location.href='/tags/friends&family'"> friends & family </button>
+    <button id="others" onClick="location.href='/tags/others'"> others </button>
+</div>
 
-    <div class="cards">
-    {% for image in images %}
-        <div class="card">
-            <img src="{{ url_for('static', filename=image.filename) }}" alt="{{ imgName }}" />
-            <div class="card-title">
-                <b> {{ image.title }} </b>
-                <button id="favorite" onClick="location.href='/favorite'"> star </button>
-            </div>
-            <div class="card-category">
-                <button id="home" onClick="location.href='/tags/{{ image.category }}'"> {{ image.category }} </button>
-                <button id="delete" onClick="location.href='/delete/{{ image.id }}'"> x </button>
-            </div>
-        </div>
-    {% endfor %}
-    </div>
-    
+{% include 'images.html' %}
+
 {% endblock %}
+
+
 
 
 
