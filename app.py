@@ -33,7 +33,7 @@ def getImages():
 def home():
     print('home')
     allImages = getImages()
-    return render_template('index.html', allImages=allImages)
+    return render_template('index.html', images=allImages)
 
 # upload image
 app.config['UPLOAD_PATH'] = 'static/uploads'
@@ -58,7 +58,7 @@ def upload():
     db.session.commit()
 
     allImages = getImages()
-    return render_template('index.html', allImages=allImages)
+    return render_template('index.html', images=allImages)
 
 # delete image
 @app.route('/delete/<int:id>')
@@ -70,6 +70,22 @@ def delete(id):
 
     print('deleted')
     return redirect(url_for('home'))
+
+# category page
+@app.route('/tags/<category>')
+def category(category):
+    print(18)
+    print(category)
+
+    if not SavedImages.query.all():
+        print('No images here.')
+        return []
+        
+    images = SavedImages.query.filter_by(category=category)
+    for image in images:
+        image.filename = 'uploads/' + image.filename
+    
+    return render_template('categories.html', images=images, category=category)
 
 # display single image
 @app.route('/<int:id>')

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} My Life - {{ category }} {% endblock %}
+
+{% block content %}
+
+<h1 onClick="location.href='/'"> <span id="title"> My Life </span> - {{ category }} </h1>
+
+<div class="cards">
+    {% for image in images %}
+    <div class="card">
+        <img src="{{ url_for('static', filename=image.filename) }}" alt="{{ imgName }}" />
+        <div class="card-title">
+            <b> {{ image.title }} </b>
+            <button id="favorite" onClick="location.href='/favorite'"> star </button>
+        </div>
+        <div class="card-category">
+            <button id="home" onClick="location.href='/home'"> {{ image.category }} </button>
+            <button id="delete" onClick="location.href='/delete/{{ image.id }}'"> x </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
