@@ -3,26 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 from app import app, db
 from app.models import SavedImages
-
-def getImages(category=None, favorites=False):
-
-    if favorites is True:          # return favorited images
-        if not SavedImages.query.filter_by(favorite=True): allImages = []
-        else: allImages = SavedImages.query.filter_by(favorite=True)
-
-    elif category is None:        # no category mentioned -> show all images
-        if not SavedImages.query.all(): allImages = []
-        else: allImages = SavedImages.query.all()
-
-    else:                       # shows images of given category
-        if not SavedImages.query.filter_by(category=category): allImages = []
-        else: allImages = SavedImages.query.filter_by(category=category)
-        
-    for image in allImages:     # path for images inside uploads folder
-        image.filename = 'uploads/' + image.filename
-
-    return allImages
-    
+from app.helper import getImages, prevUrlChecker
 
 @app.route('/')
 def home():
@@ -64,15 +45,14 @@ def delete(id):
     db.session.commit()
 
     print('deleted')
-    prev_url = request.referrer
-    if len(prev_url) > 22:  
-        if prev_url[22:] == 'favorites':        # check if delete request is coming from a favorite page
-            return redirect(url_for('favorites'))
-        else:                       # check if delete request is coming from a category page
-            tag = prev_url[27:]
-            return redirect(url_for('category', category=tag))
-    else:                         # delete request is coming from home page
-        return redirect(url_for('home'))
+
+    prevUrl = request.referrer
+    prevUrl = prevUrlChecker(prevUrl)       # helper function to check which page sent the request
+                                            # home page, favorites page, or tags page  
+                                          
+    if prevUrl == 'favorites': return redirect(url_for('favorites'))
+    elif prevUrl[0] == 'tags': return redirect(url_for('category', category=prevUrl[1]))
+    elif prevUrl == 'home': return redirect(url_for('home'))
 
 # favorite/unfavorite image
 @app.route('/favorite/<int:id>')
@@ -83,12 +63,14 @@ def favorite(id):
     db.session.commit()
 
     print('favorited')
-    prev_url = request.referrer
-    if len(prev_url) > 22:      # check if favorite request is coming from a category page
-        tag = prev_url[27:]
-        return redirect(url_for('category', category=tag))
-    else:                       # favorite request is coming from home page
-        return redirect(url_for('home'))
+
+    prevUrl = request.referrer
+    prevUrl = prevUrlChecker(prevUrl)       # helper function to check which page sent the request
+                                            # home page, favorites page, or tags page  
+                                          
+    if prevUrl == 'favorites': return redirect(url_for('favorites'))
+    elif prevUrl[0] == 'tags': return redirect(url_for('category', category=prevUrl[1]))
+    elif prevUrl == 'home': return redirect(url_for('home'))
 
 # favorites page
 @app.route('/favorites')
@@ -103,3 +85,7 @@ def category(category):
     print('category:', category)
     allImages = getImages(category)
     return render_template('categories.html', images=allImages, category=category)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
