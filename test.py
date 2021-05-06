@@ -1,9 +1,3 @@
-def fu(category=None):
-    print(52)
-    if category is None:
-        return 'nothing'
-    else: 
-        return 'category found'
+ar = 'asdasdsdfsdf'
 
-category = 'assd'
-print(fu())
+print(ar[-1:-4:-1])
