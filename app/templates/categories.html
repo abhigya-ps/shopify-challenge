@@ -6,7 +6,8 @@
 
 <h1 onClick="location.href='/'"> <span id="title"> My Life </span> - {{ category }} </h1>
 
-{% if images[0] is defined %}
+<!-- display images only if they exist, else display error message -->
+{% if images[0] is defined %}       
 {% include 'images.html' %}
 {% else %}
 <h3 id="error"> no images here </h3>

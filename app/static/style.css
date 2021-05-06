@@ -71,3 +71,14 @@ img {
   display: flex;
   justify-content: space-between;
 }
+
+.errorPage {
+  /* border: 1px solid green;  */
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#btnHome {
+  /* border: 1px solid red; */
+}

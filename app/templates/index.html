@@ -6,8 +6,8 @@
 
 <h1 onClick="location.href='/'"><span id="title"> Welcome to My Life! </span></h1>
 <form id="imageForm" action="/" enctype="multipart/form-data" method="POST">
-    <input type="text" id="title" name="title" placeholder="What are you uploading?" />
-    <select id="category" name="category" placeholder="tags">
+    <input type="text" id="title" name="title" placeholder="What are you uploading?" required />
+    <select id="category" name="category" placeholder="tags" required >
         <option disabled selected value> Select a category </option>
         <option value="home"> home </option>
         <option value="work"> work </option>
@@ -19,7 +19,7 @@
         <option value="f&f"> friends & family </option>
         <option value="others"> others </option>
     </select>
-    <input type="file" id="picture" name="picture" />
+    <input type="file" id="picture" name="picture" required />
     <input type="submit" id="submit" value="Upload Picture" />
 </form>
 
