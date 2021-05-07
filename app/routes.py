@@ -27,7 +27,6 @@ def upload():
 
     filename = secure_filename(picture.filename)
     print(filename)
-
     if noFileName(filename) is True:        # check if image file has a name
         return render_template('error.html', message="image has no file name")
 
@@ -42,7 +41,10 @@ def upload():
         # save image file to directory
         picture.save(os.path.join(app.config['UPLOAD_PATH'], filename))
     except exc.SQLAlchemyError as e:
+        print('xxxx')
         errorMessage = errorType(e)
+        print(e)
+        print('zzzz')
         return render_template('error.html', message=errorMessage)
 
     allImages = getImages()
