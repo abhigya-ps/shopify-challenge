@@ -1,18 +1,18 @@
 <div class="cards">
     {% for image in images %}
     <div class="card">
-        <img src="{{ url_for('static', filename=image.filename) }}" alt="{{ imgName }}" />
+        <img id="photo" src="{{ url_for('static', filename=image.filename) }}" alt="{{ imgName }}" />
         <div class="card-title">
             <b> {{ image.title }} </b>
             {% if image.favorite == True %}
-            <button id="favorite" onClick="location.href='/favorite/{{ image.id }}'"><b> starred </b></button>
+            <button id="favorited" onClick="location.href='/favorite/{{ image.id }}'"><i> in favorites </i></button>
             {% else %}
-            <button id="favorite" onClick="location.href='/favorite/{{ image.id }}'"> star </button>
+            <button id="favorite" onClick="location.href='/favorite/{{ image.id }}'"> favorite </button>
             {% endif %}
         </div>
         <div class="card-category">
-            <button id="home" onClick="location.href='/tags/{{ image.category }}'"> {{ image.category }} </button>
-            <button id="delete" onClick="location.href='/delete/{{ image.id }}'"> x </button>
+            <button id="category" onClick="location.href='/tags/{{ image.category }}'"><i> {{ image.category }} </i></button>
+            <button id="delete" onClick="location.href='/delete/{{ image.id }}'"> delete </button>
         </div>
     </div>
     {% endfor %}

@@ -1,3 +1,9 @@
+body {
+  background: #F6FAFC;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #0A46B7;
+}
+
 h1, h3#error {
   text-align: center;
   /* border: 1px solid red; */
@@ -15,6 +21,14 @@ form {
   justify-content: space-around;
 }
 
+input#title, #category, #submit, button {
+  border-radius: 5px;
+  border: 1px solid #0A46B7;
+  background: #fff;
+  color: #0A46B7;
+  cursor: pointer;
+}
+
 input#picture {
   /* border: 1px solid red; */
   width: 25%;
@@ -22,6 +36,8 @@ input#picture {
 
 hr {
   width: 50%;
+  border: 1px solid #0A46B7;
+  background: #0A46B7;
 }
 
 .categories {
@@ -50,12 +66,17 @@ hr {
   /* overflow: hidden; */
 }
 
-img {
-  /* border: 1px solid red; */
-  border-radius: 5px;
+img#photo {
+  /* border: 2px solid #0A46B7; */
+  border-radius: 8px;
   width: 100%;
   height: 75%;
   object-fit: cover;
+}
+
+button#category {
+  border: 0px;
+  background: #F6FAFC;
 }
 
 .card-title {
