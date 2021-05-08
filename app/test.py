@@ -1,15 +1,5 @@
 import unittest
-import demo
 import helper
-
-class TestDemo(unittest.TestCase):
-    def test_add(self):
-        result = demo.add(10, 5)
-        self.assertEqual(result, 15)
-
-    def test_add2(self):
-        result = demo.add(100, 200)
-        self.assertEqual(result, 300)
 
 class TestHelper(unittest.TestCase):
     def test_prevUrlChecker(self):
@@ -39,7 +29,16 @@ class TestHelper(unittest.TestCase):
         
         otherError = '(sqlite3.IntegrityError) UNIQUE constraint failed'
         self.assertEqual(helper.errorType(otherError), 'something went wrong with the upload')
-
+    
+    # def test_getImages(self):
+    #     allImages = ['uploads/cousin-ritas-home.jpg',
+    #                 'uploads/garlic-naan.jpg',
+    #                 'uploads/group-study.jpg',
+    #                 'uploads/work-from-home.jpg',
+    #                 'uploads/geneva-day-trip.webp',
+    #                 'uploads/jens-painting.jpg',
+    #                 'uploads/chon-at-audiotree.jpg']
+    #     self.assertEqual(helper.getImages(), allImages)
 
 if __name__ == "__main__":
     unittest.main()

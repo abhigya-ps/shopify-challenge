@@ -34,23 +34,23 @@ def errorType(e):           # error -> either title already used or image alread
     elif str(e).count('filename') == 2: return "image already exists"
     else: return "something went wrong with the upload"
 
-# from app.models import SavedImages
+from app.models import SavedImages
 
-# def getImages(category=None, favorites=False):
+def getImages(category=None, favorites=False):
 
-#     if favorites is True:          # return favorited images
-#         if not SavedImages.query.filter_by(favorite=True): allImages = []
-#         else: allImages = SavedImages.query.filter_by(favorite=True)
+    if favorites is True:          # return favorited images
+        if not SavedImages.query.filter_by(favorite=True): allImages = []
+        else: allImages = SavedImages.query.filter_by(favorite=True)
 
-#     elif category is None:        # no category mentioned -> show all images
-#         if not SavedImages.query.all(): allImages = []
-#         else: allImages = SavedImages.query.all()
+    elif category is None:        # no category mentioned -> show all images
+        if not SavedImages.query.all(): allImages = []
+        else: allImages = SavedImages.query.all()
 
-#     else:                       # shows images of given category
-#         if not SavedImages.query.filter_by(category=category): allImages = []
-#         else: allImages = SavedImages.query.filter_by(category=category)
+    else:                       # shows images of given category
+        if not SavedImages.query.filter_by(category=category): allImages = []
+        else: allImages = SavedImages.query.filter_by(category=category)
         
-#     for image in allImages:     # path for images inside uploads folder
-#         image.filename = 'uploads/' + image.filename
+    for image in allImages:     # path for images inside uploads folder
+        image.filename = 'uploads/' + image.filename
 
-#     return allImages
+    return allImages

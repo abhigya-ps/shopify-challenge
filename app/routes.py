@@ -41,10 +41,7 @@ def upload():
         # save image file to directory
         picture.save(os.path.join(app.config['UPLOAD_PATH'], filename))
     except exc.SQLAlchemyError as e:
-        print('xxxx')
         errorMessage = errorType(e)
-        print(e)
-        print('zzzz')
         return render_template('error.html', message=errorMessage)
 
     allImages = getImages()
