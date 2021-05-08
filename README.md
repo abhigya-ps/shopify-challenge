@@ -45,4 +45,3 @@ personal image blog that lets a user upload meanigful photos from his or her lif
 <code>$ python run.py </code> <br><br>
 - Visit [localhost:5000](http://localhost:5000/) in a web browser. You are now in the homepage! <br><br>
 - Start uploading your favorite images!
-  

@@ -8,4 +8,5 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///images.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+# import view functions of different url routes ex. /home, /favorites
 from app import routes

@@ -1,12 +1,14 @@
 body {
-  background: #F6FAFC;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  color: #0A46B7;
+  background: #f6fafc;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Verdana, sans-serif;
+  color: #0a46b7;
 }
 
-h1, h3#error {
-  text-align: center;
+h1,
+h3#error {
   /* border: 1px solid red; */
+  text-align: center;
 }
 
 span#title {
@@ -21,16 +23,19 @@ form {
   justify-content: space-around;
 }
 
-input#title, #category, #submit, button {
+input#title,
+#category,
+#submit,
+button {
   border-radius: 5px;
-  border: 1px solid #0A46B7;
+  border: 1px solid #0a46b7;
   background: #fff;
-  color: #0A46B7;
+  color: #0a46b7;
   cursor: pointer;
 }
 
 #submit {
-  border: 2px solid #0A46B7;
+  border: 2px solid #0a46b7;
   font-weight: 750;
 }
 
@@ -41,8 +46,8 @@ input#picture {
 
 hr {
   width: 50%;
-  border: 1px solid #0A46B7;
-  background: #0A46B7;
+  border: 1px solid #0a46b7;
+  background: #0a46b7;
 }
 
 .categories {
@@ -67,8 +72,6 @@ hr {
   width: 30.5%;
   height: 250px;
   margin: 15px;
-  /* padding: 10px; */
-  /* overflow: hidden; */
 }
 
 img#photo {
@@ -81,7 +84,7 @@ img#photo {
 
 button#category {
   border: 0px;
-  background: #F6FAFC;
+  background: #f6fafc;
 }
 
 .card-title {
@@ -103,8 +106,4 @@ button#category {
   width: 50%;
   margin: 0 auto;
   text-align: center;
-}
-
-#btnHome {
-  /* border: 1px solid red; */
 }
