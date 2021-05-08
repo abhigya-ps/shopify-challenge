@@ -26,7 +26,7 @@ personal image blog that lets a user upload meanigful photos from his or her lif
 
 ## Instructions
 - Clone repository and navigate to repository <br>
-<code>$ git clone github.com/abhigya-ps/shopify-challenge </code> <br>
+<code>$ git clone https://github.com/abhigya-ps/shopify-challenge </code> <br>
 <code>$ cd shopify-challenge </code> <br><br>
 - Create virtual environment and activate <br>
 <code>$ virtualenv venv </code> <br>
