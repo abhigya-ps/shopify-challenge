@@ -29,6 +29,11 @@ input#title, #category, #submit, button {
   cursor: pointer;
 }
 
+#submit {
+  border: 2px solid #0A46B7;
+  font-weight: 750;
+}
+
 input#picture {
   /* border: 1px solid red; */
   width: 25%;
