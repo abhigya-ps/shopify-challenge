@@ -22,7 +22,7 @@ personal image blog that lets a user upload meanigful photos from his or her lif
 - Unit tests based on responses to certain URL requests
 
 ## Homepage demo
-<img src="images/homepage-snip.JPG" />
+<img src="images/homepage-demo.JPG" />
 
 ## Instructions
 - Clone repository and navigate to repository <br>
