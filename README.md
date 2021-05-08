@@ -35,7 +35,7 @@ personal image blog that lets a user upload meanigful photos from his or her lif
 <code>$ pip install -r requirements.txt </code> <br><br>
 - Initialize database to store image information
   - Start python shell <br>
-  <code>$ python </code> <br>
+  <code>$ python -i</code> <br>
   - Create database <br>
   <code>>>> from app import db </code> <br>
   <code>>>> db.create_all() </code> <br>
