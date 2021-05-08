@@ -1,6 +1,6 @@
 # Image Repository with Python/Flask
 
-personal image blog that lets a user upload meanigful photos from his or her life with a label indicating what that photo signifies
+image repository that lets a user upload meanigful photos from his or her life with a label indicating what that photo signifies
 
 ## Features
 - Categorize images with tags
