@@ -1,5 +1,7 @@
+from app.models import SavedImages
+
 tags = ['home', 'work', 'school', 'art', 'music', 'food', 'travel', 'friends&family', 'others']
-imageFormats = ['jpg', 'jpeg', 'png', 'webp']
+imageFormats = ['jpg', 'jpeg', 'png', 'webp', 'jfif']
 
 def prevUrlChecker(urlStr):
     
@@ -33,8 +35,6 @@ def errorType(e):           # error -> either title already used or image alread
     if str(e).count('title') == 2: return "use a different title for your image"
     elif str(e).count('filename') == 2: return "image already exists"
     else: return "something went wrong with the upload"
-
-from app.models import SavedImages
 
 def getImages(category=None, favorites=False):
 

@@ -5,7 +5,6 @@ from app import app, db
 from app.models import SavedImages
 from app.helper import getImages, prevUrlChecker, tags, fileFormat, noFileName, errorType
 from sqlalchemy import exc
-import traceback
 
 @app.route('/')
 def home():
