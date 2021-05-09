@@ -28,7 +28,7 @@ image repository that lets a user upload meanigful photos from his or her life w
 - Clone repository and navigate to repository <br>
 <code>$ git clone https://github.com/abhigya-ps/shopify-challenge </code> <br>
 <code>$ cd shopify-challenge </code> <br><br>
-- Create virtual environment and activate <br>
+- Create virtual environment and activate it <br>
 <code>$ virtualenv venv </code> <br>
 <code>$ source venv/scripts/activate </code> <br><br>
 - Install packages in the requirements file <br>
